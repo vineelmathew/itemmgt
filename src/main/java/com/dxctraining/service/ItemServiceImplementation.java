@@ -2,12 +2,14 @@ package com.dxctraining.service;
 
 import com.dxctraining.dao.IItemDao;
 import com.dxctraining.entities.Item;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
 
 @Transactional
 @Service
-public class ItemService implements IItemService{
+public class ItemServiceImplementation implements IItemService{
 
     @Autowired
 private IItemDao itemDao;

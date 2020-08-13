@@ -1,9 +1,8 @@
 package com.dxctraining.config;
 
 import com.mchange.v2.c3p0.ComboPooledDataSource;
+import com.sun.org.slf4j.internal.Logger;
 import com.sun.org.slf4j.internal.LoggerFactory;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.*;
@@ -13,10 +12,9 @@ import org.springframework.orm.jpa.JpaTransactionManager;
 import org.springframework.orm.jpa.JpaVendorAdapter;
 import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
 import org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter;
-import org.springframework.transaction.PlatformTransactionManager;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
+
 import javax.persistence.EntityManagerFactory;
-import javax.sql.DataSource;
 import java.util.Properties;
 
 @Configuration
@@ -43,7 +41,7 @@ public class JavaConfig {
 
 
     @Bean
-    public DataSource dataSource() {
+    public ComboPooledDataSource dataSource() {
         try {
             ComboPooledDataSource dataSource = new ComboPooledDataSource();
             Environment environment = applicationContext.getEnvironment();
@@ -77,7 +75,7 @@ public class JavaConfig {
 
 
     @Bean
-    public PlatformTransactionManager transactionManager(
+    public JpaTransactionManager transactionManager(
             EntityManagerFactory emf) {
         JpaTransactionManager transactionManager = new JpaTransactionManager();
         transactionManager.setEntityManagerFactory(emf);

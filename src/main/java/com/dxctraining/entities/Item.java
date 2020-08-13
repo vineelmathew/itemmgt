@@ -11,7 +11,6 @@ import java.util.Objects;
 public class Item {
 
 @Id
-@GeneratedValue
 private int id;
 private String name;
 
